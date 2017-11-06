@@ -1,14 +1,13 @@
 package com.jusenr.kotlindemo.activity
 
 import android.os.Bundle
+import android.util.Log
 import com.jusenr.kotlindemo.R
 import com.jusenr.kotlindemo.base.BaseActivity
 
 class LaunchActivity : BaseActivity() {
-
-
     companion object {
-//        val TAG: String? = LaunchActivity::class.simpleName
+        val TAG: String = LaunchActivity::class.java.simpleName
 
     }
 
@@ -18,7 +17,7 @@ class LaunchActivity : BaseActivity() {
 
         title = "Launch"
 
-//        Log.v(TAG, "This activity is ${LaunchActivity.TAG}")
+        Log.v(TAG, "This activity is $localClassName")
     }
 
 }

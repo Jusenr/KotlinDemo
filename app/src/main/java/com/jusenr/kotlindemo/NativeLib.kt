@@ -11,12 +11,13 @@ package com.jusenr.kotlindemo
  */
 class NativeLib {
     companion object {
-//        val TAG: String = NativeLib::class.simpleName.toString()
+        val TAG: String = NativeLib::class.java.simpleName
 
         // Used to load the 'native-lib' library on application startup.
         init {
             System.loadLibrary("native-lib")
         }
+
     }
 
     /**

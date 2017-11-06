@@ -14,6 +14,11 @@ import android.util.Log
  * Project    ：KotlinDemo.
  */
 class TotalApplication : Application() {
+    companion object {
+        val TAG: String = TotalApplication::class.java.simpleName
+
+
+    }
 
     override fun onCreate() {
         super.onCreate()
