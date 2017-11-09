@@ -34,6 +34,10 @@ allprojects {
     //Set unified encoding
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
+        //Enabling the compilation of a single daemon
+        options.fork = true
+        //Incremental compiling
+        options.incremental = true
     }
     //Setting unified javaDoc encoding
     tasks.withType(Javadoc) {
@@ -59,6 +63,28 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+task copyApks(type: Copy) {
+    doLast {
+        def fromFile = "$rootDir/app/build/outputs/apk/"
+        def intoFile = "$rootDir/outapks/"
+        def versionName = getVersionName()
+        def time = releaseTime("yyyyMMdd")
+
+        rootProject.delete(intoFile)
+
+        copy {
+            from fromFile
+            into intoFile
+
+            File file = rootProject.file(intoFile)
+            if (file != null && file.getName().endsWith('.apk')) {
+                file.getName().replace(".apk", "-${versionName}-${time}.apk")
+            }
+        }
+
+        println("=====================build.copyApks doLast success.=========================")
+    }
+}
 //task assemble(type: Assemble) {
 //    delete "$rootDir/app/build/outputs"
 //}
