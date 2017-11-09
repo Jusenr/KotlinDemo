@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+description = 'This is project app module build.gradle.'
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -131,4 +133,9 @@ dependencies {
     // Anko SQLite
 //    implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
 
+}
+kotlin {
+    experimental {
+        coroutines "error"
+    }
 }
