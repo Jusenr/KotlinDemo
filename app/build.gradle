@@ -136,6 +136,6 @@ dependencies {
 }
 kotlin {
     experimental {
-        coroutines "enable"
+        coroutines "warn"
     }
 }

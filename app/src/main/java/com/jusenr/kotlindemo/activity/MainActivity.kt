@@ -9,6 +9,7 @@ import com.jusenr.kotlindemo.R
 import com.jusenr.kotlindemo.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.textColor
 
 class MainActivity : BaseActivity() {
     companion object {
@@ -29,6 +30,8 @@ class MainActivity : BaseActivity() {
         // Example of a call to a native method
         val nativeLib = NativeLib()
         sample_text.text = nativeLib.stringFromJNI()
+        sample_text.textColor = resources.getColor(R.color.colorAccent)
+        sample_text.textSize = 18f
 //        sample_text.setOnClickListener(View.OnClickListener {
 //
 //        })
