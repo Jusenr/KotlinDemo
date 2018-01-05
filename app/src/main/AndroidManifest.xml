@@ -10,7 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="${UMENG_APPKEY_VALUE}"/>
@@ -37,15 +36,22 @@
                     android:scheme="kotlin"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.LaunchActivity"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".base.BaseActivity"
             android:screenOrientation="portrait"/>
+        <!--SchameFilter-->
+        <activity
+            android:name=".SchameFilterActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

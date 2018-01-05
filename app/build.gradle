@@ -15,11 +15,15 @@ android {
         manifestPlaceholders rootProject.ext.MANIFESTPLACEHOLDERS
         //Logcat日志TAG设置
         buildConfigField "String", "LOG_TAG", "\"${rootProject.ext.APP_LOG_TAG}\""
+        buildConfigField "String", "BUILD_TIME", "\"${rootProject.releaseTime("yyyyMMdd HH:mm")}\""
         //默认服务器环境配置(生产环境)
-        buildConfigField "boolean", "IS_INNER", "false"
+        buildConfigField "boolean", "IS_INNER_TEST", "false"
         buildConfigField "int", "HOST_NOW", "1"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86"
+        }
         externalNativeBuild {
             cmake {
                 cppFlags ""
@@ -27,11 +31,16 @@ android {
         }
         javaCompileOptions {
             annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
                 includeCompileClasspath false
             }
         }
         flavorDimensions "versionCode"
         project.archivesBaseName = "kotlindemo-$versionName"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     signingConfigs {
         release {
@@ -43,8 +52,6 @@ android {
     }
     buildTypes {
         release {
-            //Show Log
-            buildConfigField "boolean", "LOG_DEBUG", "false"
             minifyEnabled false
             shrinkResources false
             zipAlignEnabled true
@@ -52,8 +59,6 @@ android {
             signingConfig signingConfigs.release
         }
         debug {
-            //Show Log
-            buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
             shrinkResources false
             zipAlignEnabled true
@@ -83,12 +88,14 @@ android {
     //产品渠道配置
     productFlavors {
         innerTest {
+            applicationId "com.jusenr.kotlindemo.test"
             buildConfigField "boolean", "IS_INNER", "true"
             buildConfigField "int", "HOST_NOW", "2"
             versionName = "T" + rootProject.getVersionName()
         }
 
         dev {
+            applicationId "com.jusenr.kotlindemo.dev"
             buildConfigField "boolean", "IS_INNER", "true"
             buildConfigField "int", "HOST_NOW", "3"
             versionName = "D" + rootProject.getVersionName()
@@ -133,6 +140,9 @@ dependencies {
     // Anko SQLite
 //    implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
 
+    //ARouter
+    compile "com.alibaba:arouter-api:$arouter_version"
+    annotationProcessor "com.alibaba:arouter-compiler:$arouter_compiler_version"
 }
 kotlin {
     experimental {

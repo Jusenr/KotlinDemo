@@ -3,6 +3,7 @@ package com.jusenr.kotlindemo
 import android.app.Application
 import android.support.multidex.MultiDex
 import android.util.Log
+import com.alibaba.android.arouter.launcher.ARouter
 
 /**
  * Description:
@@ -17,13 +18,18 @@ class TotalApplication : Application() {
     companion object {
         val TAG: String = TotalApplication::class.java.simpleName
 
-
     }
 
     override fun onCreate() {
         super.onCreate()
 
         MultiDex.install(applicationContext)
+
+        if (BuildConfig.DEBUG) {  // 这两行必须写在init之前，否则这些配置在init过程中将无效
+            ARouter.openLog()     // 打印日志
+            ARouter.openDebug()   // 开启调试模式
+        }
+        ARouter.init(this)
 
         Log.i("TotalApplication", "TotalApplication\'s onCreate()")
         Log.i("TotalApplication", "isDebug :" + BuildConfig.IS_INNER)
