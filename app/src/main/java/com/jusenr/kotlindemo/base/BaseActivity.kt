@@ -2,19 +2,21 @@ package com.jusenr.kotlindemo.base
 
 import android.app.Activity
 import android.os.Bundle
+import android.support.annotation.Nullable
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.KeyEvent
 import android.view.MenuItem
 
-open class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
     companion object {
         val TAG: String = BaseActivity::class.java.simpleName
         protected var mActivity: Activity? = null
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override final fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(getLayoutId())
         mActivity = this
         Log.i(TAG, localClassName)
 
@@ -23,7 +25,12 @@ open class BaseActivity : AppCompatActivity() {
             actionBar!!.setHomeButtonEnabled(true)
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
+        onViewCreated(savedInstanceState)
     }
+
+    protected abstract fun getLayoutId(): Int
+
+    protected abstract fun onViewCreated(@Nullable savedInstanceState: Bundle?)
 
     override fun onStart() {
         super.onStart()

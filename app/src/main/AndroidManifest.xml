@@ -18,8 +18,9 @@
             android:value="${UMENG_CHANNEL_VALUE}"/>
 
         <activity
-            android:name=".activity.MainActivity"
-            android:screenOrientation="portrait">
+            android:name=".activity.LaunchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -37,21 +38,45 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.LaunchActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="portrait"/>
-        <activity
-            android:name=".base.BaseActivity"
-            android:screenOrientation="portrait"/>
-        <!--SchameFilter-->
-        <activity
-            android:name=".SchameFilterActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+        <!-- SchemeFilter -->
+        <activity
+            android:name=".base.SchemeFilterActivity"
+            android:screenOrientation="portrait">
+            <!-- Scheme -->
+            <intent-filter>
+                <data
+                    android:host="k.jusenr.com"
+                    android:scheme="arouter"/>
+
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+
+            <!-- App Links -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="k.jusenr.com"
+                    android:scheme="http"/>
+                <data
+                    android:host="k.jusenr.com"
+                    android:scheme="https"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.TestActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>
