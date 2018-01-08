@@ -1,10 +1,9 @@
 package com.jusenr.kotlindemo.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.jusenr.kotlindemo.R
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jusenr.kotlindemo.base.BaseActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,7 +17,7 @@ class LaunchActivity : BaseActivity() {
     }
 
     override fun getLayoutId(): Int {
-        return R.layout.activity_launch
+        return 0
     }
 
     override fun onViewCreated(savedInstanceState: Bundle?) {
@@ -29,11 +28,11 @@ class LaunchActivity : BaseActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe({ })
                 .subscribe({
-                    startActivity(Intent(this@LaunchActivity, MainActivity::class.java))
+                    //                    startActivity(Intent(this@LaunchActivity, MainActivity::class.java))
 
-//                    ARouter.getInstance()
-//                            .build("/main/ui")
-//                            .navigation()
+                    ARouter.getInstance()
+                            .build("/main/ui")
+                            .navigation()
                     finish()
                 })
     }

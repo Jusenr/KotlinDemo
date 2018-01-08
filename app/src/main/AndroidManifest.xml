@@ -45,6 +45,7 @@
         <activity
             android:name=".base.SchemeFilterActivity"
             android:screenOrientation="portrait">
+
             <!-- Scheme -->
             <intent-filter>
                 <data
@@ -72,11 +73,11 @@
                     android:scheme="https"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.TestActivity"
             android:screenOrientation="portrait"/>
-
+        <activity android:name=".activity.AboutActivity">
+        </activity>
     </application>
 
 </manifest>

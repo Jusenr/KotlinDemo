@@ -16,7 +16,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override final fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
+        val layoutId = getLayoutId()
+        if (layoutId != 0) {
+            setContentView(layoutId)
+        }
         mActivity = this
         Log.i(TAG, localClassName)
 

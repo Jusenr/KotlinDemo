@@ -2,6 +2,7 @@ package com.jusenr.kotlindemo.activity
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -40,15 +41,11 @@ class MainActivity : BaseActivity() {
 //
 //        })
         sample_text.onClick {
-//            onLaunch(applicationContext)
-//            val testUriMix = Uri.parse("arouter://k.jusenr.com/test/ui")
-//            ARouter.getInstance().build(testUriMix)
-//                    .withString("key1", "value1")
-//                    .withBoolean("key2", true)
-//                    .navigation()
-
-            ARouter.getInstance()
-                    .build("/test/ui")
+            //            onLaunch(applicationContext)
+            val testUriMix = Uri.parse("arouter://k.jusenr.com/test/ui")
+            ARouter.getInstance().build(testUriMix)
+                    .withString("key1", "value1-123")
+                    .withBoolean("key2", true)
                     .navigation()
         }
 
